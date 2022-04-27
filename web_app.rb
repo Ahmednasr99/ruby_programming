@@ -29,20 +29,20 @@ html = Nokogiri::HTML(URI.open(uri))
   other: []
 }
 
-html.search('table').each { |table, index|
+html.search('table').each do |table|
   arr = []
   table.search('tr').search('th > a > span').each do |e|
     arr << {name: e.content}
   end
   @weapon_data << arr if arr.any?
-}
+end
 
-@weapons.keys.each_with_index { |k, i|
+@weapons.keys.each_with_index do |k, i|
   @weapons[k] = @weapon_data[i]
-}
+end
 
 
-p @weapons[:axes]
+# p @weapons[:axes]
 
 # p @weapons
 
